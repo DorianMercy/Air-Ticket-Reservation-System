@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>ViewBookingAgents</title>
+    </head>
+    
+    <body>
+
+        <h2>View Booking Agents</h2>
+        </br>{% if error %}
+                <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+
+        </br>
+        <a href="/staffHome">Back to Home</a>
+    </br>
+        {% if results1 %}
+        <div>
+            <b> Top 5 booking agents based on number of tickets sales for the past month:</b></br>
+            <table>
+                <th>Booking Agent Email</th>
+                <th>Tickets Sales Last Month</th>
+                
+            {% for line in results1 %}
+                <tr>
+                    <td>{{line[0]}}</td>
+                    <td>{{line[1]}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+            
+        {% endif %}</br>
+
+        {% if results2 %}
+        <div>
+            <b> Top 5 booking agents based on number of tickets sales for the past year:</b></br>
+            <table>
+                <th>Booking Agent Email</th>
+                <th>Tickets Sales Last Year</th>
+                
+            {% for line in results2 %}
+                <tr>
+                    <td>{{line[0]}}</td>
+                    <td>{{line[1]}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+            
+        {% endif %}</br>
+
+        {% if results3 %}
+        <div>
+            <b> Top 5 booking agents based on the amount of commission for the past year: </b></br>
+            <table>
+                <th>Booking Agent Emal</th>
+                <th>Total Commisison Last Year</th>
+                
+            {% for line in results3 %}
+                <tr>
+                    <td>{{line[0]}}</td>
+                    <td>{{line[1]}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+            
+        {% endif %}</br>
+
+        
+
+    </body>
+
+
+</html>

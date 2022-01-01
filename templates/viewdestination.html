@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>ViewDestination</title>
+    </head>
+
+    <body>
+
+        <h1>View Top 3 destinations</h1>
+        {% if error %}
+                <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+
+
+        </br>
+        <a href="/staffHome">Back to home</a>
+        <div>
+            <h3>Last Three Months' top destinations (based on purchases history)</h3></br>
+
+            <table>
+                <th>Airport Name</th>
+                <th>City Name</th>
+                <th>Tickets Purchased</th>
+                
+            {% for line in results1 %}
+                <tr>
+                    <td>{{line[0]}}</td>
+                    <td>{{line[1]}}</td>
+                    <td>{{line[2]}}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+        </div>
+        
+        </br>
+        <div>
+            <h3>Last Year' top destinations (based on purchases history)</h3></br>
+
+            <table>
+                <th>Airport Name</th>
+                <th>City Name</th>
+                <th>Tickets Purchased</th>
+                
+            {% for line in results2 %}
+                <tr>
+                    <td>{{line[0]}}</td>
+                    <td>{{line[1]}}</td>
+                    <td>{{line[2]}}</td>
+                </tr>
+            {% endfor %}
+
+             </table></br>
+            
+        </div>
+        
+
+    </body>
+</html>

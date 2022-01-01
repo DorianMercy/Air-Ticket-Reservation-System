@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>searchCustomer</title>
+</head>
+<body>
+<h1>Search from All Flights</h1>
+<br>
+{% if error %}
+    <p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+<ul>
+    <li>
+        <a href="/homeCustomer/searchPageCustomer">Search again</a>
+    </li>
+    <li>
+        <a href="/homeCustomer">Go back to my home page</a>
+    </li>
+</ul>
+
+<div>
+    <form action="/homeCustomer/searchCustomer" method="POST">
+        From <br>
+        <input type="text" name = "fromcity" placeholder="city" required>
+        <input type="text" name = "fromairport" placeholder="airport" required>
+        <input type="date" name = "fromdate" placeholder="date" required> <br>
+        To <br>
+        <input type="text" name = "tocity" placeholder="city" required>
+        <input type="text" name = "toairport" placeholder="airport" required>
+        <input type="date" name = "todate" placeholder="date" required> <br>
+        <input type="submit" value = Search />
+    </form>
+
+</div>
+
+<br>
+<div>
+    <table>
+        <th>Airline Name</th>
+        <th>Flight Number</th>
+        <th>Departure Airport</th>
+        <th>Departure Time</th>
+        <th>Arrival Airport</th>
+        <th>Arrival Time</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Airplane ID</th>
+      
+    {% for line in results %}
+        <tr>
+            <td>{{line[0]}}</td>
+            <td>{{line[1]}}</td>
+            <td>{{line[2]}}</td>
+            <td>{{line[3]}}</td>
+            <td>{{line[4]}}</td>
+            <td>{{line[5]}}</td>
+            <td>{{line[6]}}</td>
+            <td>{{line[7]}}</td>
+            <td>{{line[8]}}</td>
+        </tr>
+    {% endfor %}
+    </table> 
+
+</div>
+
+</body>
+</html>

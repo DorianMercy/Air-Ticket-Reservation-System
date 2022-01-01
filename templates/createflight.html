@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>createflight</title> 
+    </head>
+
+    <body>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+    {% endif %}
+
+    
+    <h2>Create Flight</h2>
+    
+    <div>
+        <form action="/staffHome/searchFlights/updatedlist" method="POST">
+            <input type="number" name = "flightnum" placeholder="Flight Number" required/> </br>
+            <input type="text" name = "departport" placeholder="Departure Airport" required/> </br>
+            <b>Departure Time</b> </br>
+            <input type=datetime-local name = "departtime" step="1" required> </br>
+            <input type="text" name = "arriveport" placeholder="Arrival Airport" required/> </br>
+            <b>Arrival Time</b> </br>
+            <input type=datetime-local name = "arrivetime" step="1" required> </br>
+            <input type="number" name = "price" placeholder="Ticket Price" required/> </br>
+            <input type="text" name = "airplanenum" placeholder="Airplane ID" required/> </br>
+            <input type="submit" value = Submit />
+        </form>
+    </div>
+
+    
+        <h2>Update Status</h2>
+    <div>
+        <form action="/staffHome/searchFlights/updatedstatus" method="POST">
+            <input type="text" name = "flightnum" placeholder="Flight Number" required/> </br>
+            <input type="radio" name="status" value="Upcoming" required> Upcoming
+            <input type="radio" name="status" value="Delayed"> Delayed
+            <input type="radio" name="status" value="In-progress"> In Progress
+            <input type="radio" name="status" value="Arrived"> Arrived <br><br>
+            <input type="submit" value = Update />
+        </form>
+    </div>
+    <a href="/staffHome">Back</a>
+
+</body>
+
+
+</html>

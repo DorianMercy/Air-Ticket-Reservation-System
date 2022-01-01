@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>RegisterCustomer</title>
+    </head>
+    <body>
+
+        <h1>Flight history of {{customer}}</h1>
+        <br>{% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+
+        <br><a href="/staffHome/viewCustomers">Search again</a>
+        <div>
+            <table>
+                <th>Flight Number</th>
+                
+            {% for line in results %}
+                <tr>
+                    <td>{{line[0]}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>    
+
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>CustomerHome</title> 
+        <div>
+            <h1>Welcome! {{username}}!</h1>
+        </div>
+        
+    </head>
+<body>
+    <ul>
+        <li><a href="/homeCustomer/purchasePageCustomer">Purchase new ticket</a></li>
+        <li><a href="/homeCustomer/searchPageCustomer">Search from All Flights</a></li>
+        <li><a href="/homeCustomer/trackMySpending">Track my spending</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul> 
+    
+    {% if message %}
+        <h2>{{message}}</h2></br>
+    {% endif %}
+    
+    <h2>Purchased Flights</h2>
+    <table>
+        <th>Ticket ID</th>
+        <th>Flight ID</th>
+        <th>Departure Airport</th>
+        <th>Departure Time</th>
+        <th>Arrival Airport</th>
+        <th>Arrival Time</th>
+
+        {% for line in posts %}
+	    <tr>
+            <td>{{line[0]}}</td>
+            <td>{{line[1]}} {{line[2]}}</td>
+            <td>{{line[3]}}</td>
+            <td>{{line[4]}}</td>
+            <td>{{line[5]}}</td>
+            <td>{{line[6]}}</td>
+		</tr>
+        {% endfor %}
+    </table>
+
+    <h4>View Bought Flights for Specified Duration</h4>
+        <div>
+            <form action="/homeCustomer/viewFlightCustomer" method="POST">
+            Departure range of dates:</br>
+            From</br>
+            <input type="date" name = "fromdate" placeholder="date" required>
+        </br>To</br>
+            <input type="date" name = "todate" placeholder="date" required><br>
+            Departure Airport Name and City Name:</br>
+            <input type="text" name = "fromairport" placeholder="Airport name" required/>
+            <input type="text" name = "fromcity" placeholder="City name" required/></br>
+            Arrival Airport Name and City Name:</br>
+            <input type="text" name = "toairport" placeholder="Airport name" required/>
+            <input type="text" name = "tocity" placeholder="City name" required/></br>
+            <input type="submit" value=View>
+            </form>
+        </div>
+
+
+
+</body>
+</html>

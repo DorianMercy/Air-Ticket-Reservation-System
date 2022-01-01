@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>purchaseCustomer</title>
+</head>
+
+
+<body>
+<h1>Purchase New Ticket</h1>
+<a href="/homeCustomer">Go back to my homepage</a>
+<h3>1. Please enter your departure and destination informaion:</h3>
+<div>
+    <form action="/homeCustomer/searchPurchaseCustomer" method="POST">
+        From <br>
+        <input type="text" name = "fromcity" placeholder="city" required>
+        <input type="text" name = "fromairport" placeholder="airport" required>
+        <input type="date" name = "fromdate" placeholder="date" required> <br><br>
+        To <br>
+        <input type="text" name = "tocity" placeholder="city" required>
+        <input type="text" name = "toairport" placeholder="airport" required>
+        <input type="date" name = "todate" placeholder="date" required> <br><br>
+        <input type="submit" value = Search />
+    </form>
+
+</div>
+
+
+<h3>2. Flights available based on your chosen options:</h3>
+<div>
+    <table>
+        <th>Airline Name</th>
+        <th>Flight Number</th>
+        <th>Departure Airport</th>
+        <th>Departure Time</th>
+        <th>Arrival Airport</th>
+        <th>Arrival Time</th>
+        <th>Price</th>
+        <th>Airplane ID</th>
+      
+    {% for line in results %}
+        <tr>
+            <td>{{line[0]}}</td>
+            <td>{{line[1]}}</td>
+            <td>{{line[2]}}</td>
+            <td>{{line[3]}}</td>
+            <td>{{line[4]}}</td>
+            <td>{{line[5]}}</td>
+            <td>{{line[6]}}</td>
+            <td>{{line[7]}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% if searchError %}
+        <p class="error"><strong>Error:</strong> {{searchError}}</p>
+    {% endif %}
+    <br>
+
+</div>
+
+
+<h3>3. Choose your flight</h3>
+<div>
+    <form action="/homeCustomer/purchaseCustomer" method="POST">
+        Airline Name <br><input type="text" name = "airline_name" placeholder="airline_name" required><br>
+        Flight Number <br><input type="text" name = "flight_num" placeholder="flight_num" required> <br>
+        <input type="submit" value = Purchase />
+    </form>
+    
+    {% if purchaseError %}
+         <p class="error"><strong>Error:</strong> {{purchaseError}}</p>
+    {% endif %}
+</div>
+
+
+</body>
+</html>

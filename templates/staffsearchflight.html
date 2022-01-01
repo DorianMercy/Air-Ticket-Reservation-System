@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title>StaffHome</title> 
+    <div>
+        <h1>Welcome! {{username}}!</h1>
+    </div>
+</head>
+
+<body>
+
+<h1>View Flights</h1>
+
+
+</br>{% if error %}
+    <p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+
+{% if session.get('admin') %}
+<ul>
+    <li>
+        <a href="/staffHome/searchFlights/updateFlight">Create a new flight or Change status</a>
+    </li>
+    <li>
+        <a href="/staffHome">Refresh the search result</a>
+    </li>
+    <li><a href="/staffHome/addAirplane">Add Airplane</a></li>
+    <li><a href="/staffHome/addAirport">Add Airport</a></li>
+    <li class='dropdown'>
+        <p>View</p>
+        <div class="dropdown-content">
+            <a href="/staffHome/viewBookingagents">View Booking Agents</a>
+            <a href="/staffHome/viewCustomers">View Customers</a>
+            <a href="/staffHome/viewReports">View Reports</a>
+            <a href="/staffHome/viewRevenues">View Revenues</a>
+            <a href="/staffHome/viewDestinations">View Top Destinations</a>
+            <a href="/staffHome/viewGrantNewPermissions">View Grant New Permissions</a></li>
+            <a href="/staffHome/viewAddBookingAgents">View Add Booking Agents</a></li>
+        </div>
+    </li>
+
+</ul>
+{% else %}
+Not Admin
+ <li class='dropdown'>
+        <p>View</p>
+        <div class="dropdown-content">
+            <a href="/staffHome/viewBookingagents">View Booking Agents</a>
+            <a href="/staffHome/viewCustomers">View Customers</a>
+            <a href="/staffHome/viewReports">View Reports</a>
+            <a href="/staffHome/viewRevenues">View Revenues</a>
+            <a href="/staffHome/viewDestinations">View Top Destinations</a> </div>
+{% endif %}
+
+<li style="float:right"><a href="/logout"> Logout</a></li>
+
+{% if message2 %}
+<div>
+    <h2>{{message2}}</h2>
+</div>
+
+{% endif %}
+
+{% if message %}
+<div>
+    <h2>{{message}}</h2>
+</div>
+
+{% endif %}
+
+
+{% if results %}
+<div>
+    <table>
+        <th>airline_name</th>
+        <th>flight_num</th>
+        <th>departure_airport</th>
+        <th>departure_time</th>
+        <th>arrival_airport</th>
+        <th>arrival_time</th>
+        <th>price</th>
+        <th>status</th>
+        <th>airplane_id</th>
+        
+    {% for line in results %}
+        <tr>
+            <!-- <td>{{line.airline_name}}</td>
+            <td>{{line.flight_num}}</td>
+            <td>{{line.departure_airport}}</td>
+            <td>{{line.departure_time}}</td>
+            <td>{{line.arrival_airport}}</td>
+            <td>{{line.arrival_time}}</td>
+            <td>{{line.price}}</td>
+            <td>{{line.status}}</td>
+            <td>{{line.airplane_id}}</td> -->
+            <td>{{line[0]}}</td>
+            <td>{{line[1]}}</td>
+            <td>{{line[2]}}</td>
+            <td>{{line[3]}}</td>
+            <td>{{line[4]}}</td>
+            <td>{{line[5]}}</td>
+            <td>{{line[6]}}</td>
+            <td>{{line[7]}}</td>
+            <td>{{line[8]}}</td>
+        </tr>
+    {% endfor %}
+    </table></br>
+</div>
+
+
+{% endif %}
+
+{% if customerresults %}
+<div>
+    <table>
+        <th>Customer Email</th>
+        
+    {% for line in customerresults %}
+        <tr>
+            <td>{{line[0]}}</td>
+        </tr>
+    {% endfor %}
+    </table></br>
+</div>
+
+
+{% endif %}
+
+<div>
+    <form action="/staffHome/searchFlights/filter" method="POST">
+	
+        <h2>Filter</h2></br>  
+        <b>Departure City/Airport: </b></br>
+        <input type="text" name = "departurecitybox" placeholder="city/airport name" required/> </br>
+        <b>Arrival City/Airport: </b></br>
+        <input type="text" name = "arrivalcitybox" placeholder="city/airport name" required/> </br>
+        <b>From: </b></br>  
+        <input type="date" name="begin" step=1 required/> </br>
+        <b>To:</b></br>  
+        <input type="date" name="end" step=1 required/> </br>
+        <input type="submit" value = Search />
+    </form>
+
+</div>
+
+<div>
+    <form action="/staffHome/searchFlights/customers" method="POST">
+        <h2>Search customers by flight</h2></br> 
+        <b>Flight number:</b></br> 
+        <input type="text" name = "flightnumberbox" placeholder="enter flight number" required/> </br>
+        <input type="submit" value = Search />
+    
+    </form>
+</div>
+
+
+</body>

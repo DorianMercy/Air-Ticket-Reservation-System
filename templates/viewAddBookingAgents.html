@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Add Booking Agent</title>
+</head>
+<body>
+  <h1>Add as Booking Agent</h1>
+  <a href="/staffHome">Go back</a>
+</br>
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+  <div>
+    <form action="/AddBookingAgents" method="POST">
+        Email <br><input type="text" name = "username" placeholder="username" required/> </br>
+        <input type="submit" value = Add />
+      </form>
+
+  </div>
+
+</body>
+</html>

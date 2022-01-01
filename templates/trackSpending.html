@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TrackSpending</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {
+                packages: ['corechart']
+            });
+        </script>
+    </head>
+    
+    <body>
+        <h1>Track My Spending from {{fromdate}} to {{todate}}</h1>
+        <a href="/homeCustomer">Go back to my home page</a>
+        <div>
+            <br><br>  
+        <h3>
+        <span>Total amount of money spent: </span> {{total}}<br>
+        </h3>
+        <!-- Bar Chart!! -->
+        {% if results %}
+        <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+        
+        <script language="JavaScript">
+            function drawChart() {
+                var a = [['Month','Spending']];
+                var yticks = [];
+                for (i of '{{results}}'.split(',')){
+                    if (i != ''){
+                        a.push([parseInt(i.split(' ')[1]),parseInt(i.split(' ')[0])]);
+                        yticks.push(parseInt(i.split(' ')[0]));
+                    }
+                }
+                console.log(a);
+                var data = google.visualization.arrayToDataTable(a);
+                var options = {
+                    title: 'Monthwise Spending',
+                    isStacked: true,
+                    vAxis: {format: '#'}
+                    };
+                var chart = new google.visualization.BarChart(document.getElementById('container'));
+                chart.draw(data, options);
+            }
+            google.charts.setOnLoadCallback(drawChart);
+        </script>
+        {% endif %}
+        <br><br><br><br><br>
+        </div>
+    </body>
+</html>

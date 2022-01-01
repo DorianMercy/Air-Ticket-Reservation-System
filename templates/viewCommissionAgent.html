@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>viewcommissionAgent</title>
+    </head>
+
+    <body>
+    <!-- <h2>View My Commission</h2> -->
+
+    
+        <h1>My Commission</h1>
+        <a href="/homeAgent">Back to Home</a>
+        <div>
+            <span>Total amount of commission received in the past 30 days:</span> {{totalComm}} <br>
+            <span>Average commission received per ticket booked in the past 30 days:</span> {{avgComm}} <br>
+            <span>Total number of tickets sold in the past 30 days</span>: {{ticketCount}}<br>
+        </div>
+        <h3>View Commision for Specified Duration</h3>
+        <div>
+            <form action="/homeAgent/commission" method="POST">
+            From <br>
+            <input type="date" name = "fromdate" placeholder="date" required> <br>
+            To<br>
+            <input type="date" name = "todate" placeholder="date" required> <br><br>
+            <input type="submit" value=View>   
+            </form>
+        </div>

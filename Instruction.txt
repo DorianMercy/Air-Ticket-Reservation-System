@@ -1,0 +1,55 @@
+(a sample of test cases)
+register a customer with info not in the database of localhost
+
+Customer Info:
+email: 9@nyu.edu
+name: Ms.9
+password: 45c48cce2e2d7fbdea1afc51c7c6ad26 (after decryption, this is 9, so enter 9)
+building_num: 1555
+street: Century Avenue
+city: Chongqing
+state: Sichuan
+phone_num: 9
+passport_num: 9
+passport_exp: 3000-01-01
+country: China
+birthday: 2000-01-01
+
+{#then use the above info to login as customer}
+In customer home page, you are able to see the functions. Click on them and test with data given in the sql database file dorian_test_data.sql. 
+
+
+register a staff with info not in the database of localhost, this staff can only work for united airlines and is not an admin of united airlines.
+username: Mr.SH
+password: c4ca4238a0b923820dcc509a6f75849b (after decryption, this is 1, so enter 1)
+first_name: Eric
+last_name: Yang
+data-of_birth: 2000-01-01
+airline_name: United Airlines
+
+{#then use the above info to login as staff}
+In non-admin staff homepage, you can view and search, but there are no buttons to add flights, update status, etc.
+
+Now login as Mr.US, which is the admin of United Airlines.
+Username: Mr.US
+Password: 1
+You can see add flights, grant permission buttons etc. And you enter grant permission to grant Mr.SH admin permission.
+Then you logout and login as staff with Mr.SH (password: 1) and you see Mr.SH is now an admin.
+Note that you login as Mr.US and want to grant permission to Mr.RU, but error. Since he is not from United Airlines.
+
+Similarly, booking agent 2@nyu.com works for Rossiya airline only. And he has no permission to buy tickets of United Airlines.
+Suppose if he enters the purchase ticket page from his agent homepage, and entered locations and then selected airline name
+as united airlines, he will receive error message. "No permission from this airline"
+
+And if Mr.US adds him as the booking agent of United Airlines, we can see 2@nyu.com appears in booking_agent_works_for
+with airline name united airlines. Then he can login and go on to buy tickets for united airlines.
+
+
+register an agent with info not in the database of localhost
+email: 7@nyu.com
+password: 8f14e45fceea167a5a36dedd4bea2543
+booking_agent_id: 7
+
+{#then use the above info to login as agent}
+In agent home page, you are able to see the functions. Click on them and test with data given in the sql database file dorian_test_data.sql.
+Note that 7@nyu.com is newly registered and has no permissions from any airlines.

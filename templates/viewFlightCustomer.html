@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>ViewFlightCustomer</title>
+        <h1>Welcome! {{username}}!</h1>
+    </head>
+
+<body>
+    <h2>Purchased Flights from {{fromdate}} to {{todate}}</h2>
+    <ul>
+        <li>
+            <a href="/homeCustomer">Go back to my home page</a>
+        </li>
+        <li>
+            <a href="/logout">Logout</a>
+        </li> 
+    </ul> 
+    
+    <div>
+        <table>
+            <th>Ticket ID</th>
+            <th>Flight ID</th>
+            <th>Departure Airport</th>
+            <th>Departure Time</th>
+            <th>Arrival Airport</th>
+            <th>Arrival Time</th>
+    
+            {% for line in posts %}
+            <tr>
+                <!-- <td>{{line.ticket_id}}</td>
+                <td>{{line.airline_name}} {{line.flight_num}}</td>
+                <td>{{line.departure_airport}}</td>
+                <td>{{line.departure_time}}</td>
+                <td>{{line.arrival_airport}}</td>
+                <td>{{line.arrival_time}}</td> -->
+    
+                <td>{{line[0]}}</td>
+                <td>{{line[1]}} {{line[2]}}</td>
+                <td>{{line[3]}}</td>
+                <td>{{line[4]}}</td>
+                <td>{{line[5]}}</td>
+                <td>{{line[6]}}</td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{error}}</p>
+            {% endif %}
+    </div>
+    
+
+</body>
+</html>
